@@ -55,9 +55,9 @@ public class Student {
         this.gpa=gpa;
     }
 
-    boolean isGreaterThan(Student student) 
+    boolean isGreaterThan(Student aStudent) 
     {
-        if(this.name.compareTo(student.name()) > 0)
+        if(this.name.compareTo(aStudent.name()) > 0)
         {
             return true;
         }
@@ -65,5 +65,9 @@ public class Student {
         {
             return false;
         }
+    }
+
+    void print() {
+        System.out.println(name);
     }
 }

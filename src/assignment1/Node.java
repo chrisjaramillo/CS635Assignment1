@@ -57,49 +57,44 @@ public class Node {
         this.next = node;
     }
     
-    public void add(DoubleLinkedList doubleLinkedList)
+    public void add(Node aNode)
     {
-        // Empty list
-        if(doubleLinkedList.front() == null) 
+        if(aNode == null)
         {
-            addToFrontAndBack(doubleLinkedList);
+            aNode = this;
         }
-        else
+        else if(aNode.isGreaterThan(this))
         {
-            add(doubleLinkedList.front(), doubleLinkedList);
-        }
-    }
-    public void add(Node node, DoubleLinkedList doubleLinkedList)
-    {
-        if(node.isGreaterThan(this))
-        {
-            if(node == doubleLinkedList.front())
+            if(aNode.previous() == null)
             {
-                this.next=node;
-                doubleLinkedList.front(this);
+                this.next(aNode);
+                aNode.previous(this);
             }
             else
             {
-                this.previous=node.previous();
-                this.next=node;
-                node.previous(this);
+                this.previous(aNode.previous());
+                aNode.previous(this);
+                this.next(aNode);
+                this.previous().next(this);
             }
         }
-        else
+        else 
         {
-            this.add(node.next(),doubleLinkedList);
+            if(aNode.next() == null)
+            {
+                aNode.next(this);
+                this.previous(aNode);
+            }
+            else
+            {
+                this.add(aNode.next());
+            }
         }
     }
 
-    private void addToFrontAndBack(DoubleLinkedList doubleLinkedList) 
+    public boolean isGreaterThan(Node aNode) 
     {
-        doubleLinkedList.front(this);
-        doubleLinkedList.back(this);
-    }
-
-    public boolean isGreaterThan(Node node) 
-    {
-        if(this.student.isGreaterThan(node.student()))
+        if(this.student.isGreaterThan(aNode.student()))
         {
             return true;
         }
@@ -107,5 +102,10 @@ public class Node {
         {
             return false;
         }
+    }
+
+    public void print() 
+    {
+        this.student.print();
     }
 }

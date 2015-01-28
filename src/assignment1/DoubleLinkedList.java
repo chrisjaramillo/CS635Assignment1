@@ -45,6 +45,25 @@ public class DoubleLinkedList {
     public void add(Student student)
     {
         Node newStudent = new Node(student);
-        newStudent.add(this);
+        newStudent.add(front);
+        
+        if(newStudent.next() == front)
+        {
+            front = newStudent;
+        }
+        else if(newStudent.next() == null)
+        {
+            back = newStudent;
+        }
+    }
+
+    public void print() 
+    {
+        Node currentNode = front;
+        while(currentNode != null)
+        {
+            currentNode.print();
+            currentNode = currentNode.next();
+        }
     }
 }
