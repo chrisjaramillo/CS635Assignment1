@@ -13,15 +13,18 @@ package assignment1;
 public class DoubleLinkedList {
     Node front;
     Node back;
+    int count;
     
     DoubleLinkedList()
     {
         front = null;
         back = null;
+        count = 0;
     }
     DoubleLinkedList(Node node)
     {
         front=back=node;
+        count++;
     }
     
     Node front()
@@ -55,8 +58,27 @@ public class DoubleLinkedList {
         {
             back = newStudent;
         }
+        count++;
     }
 
+    public Node getElement(int k)
+    {
+        Node requestedElement;
+        if(k > count)
+        {
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+        else
+        {
+            requestedElement = front;
+            for(int elementIndex=1; elementIndex <= k; elementIndex++)
+            {
+                requestedElement = requestedElement.next();
+            }
+        }
+        return requestedElement;
+    }
+    
     public void print() 
     {
         Node currentNode = front;

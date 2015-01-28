@@ -27,6 +27,8 @@ public class Assignment1 {
         list.add(student2);
         list.add(student1);
         list.print();
+        Node test = list.getElement(4);
+        test.print();
     }
     
 }
