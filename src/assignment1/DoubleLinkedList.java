@@ -14,6 +14,7 @@ public class DoubleLinkedList {
     Node front;
     Node back;
     int count;
+    double probationaryGpa = 2.85;
     
     DoubleLinkedList()
     {
@@ -23,6 +24,7 @@ public class DoubleLinkedList {
     }
     DoubleLinkedList(Node node)
     {
+        node.probationaryGpa(probationaryGpa);
         front=back=node;
         count++;
     }
@@ -48,6 +50,7 @@ public class DoubleLinkedList {
     public void add(Student student)
     {
         Node newStudent = new Node(student);
+        newStudent.probationaryGpa(probationaryGpa);
         newStudent.add(front);
         
         if(newStudent.next() == front)
@@ -86,6 +89,30 @@ public class DoubleLinkedList {
         {
             currentNode.print();
             currentNode = currentNode.next();
+        }
+    }
+    public void printProbationList()
+    {
+        Node currentNode = front;
+        while(currentNode != null)
+        {
+            if(currentNode.onProbation())
+            {
+                currentNode.printRedId();
+            }
+            currentNode = currentNode.next();
+        }
+    }
+    public void printPerfectGpaList()
+    {
+        Node currentNode = back;
+        while(currentNode != null)
+        {
+            if(currentNode.isPerfectGpa())
+            {
+                currentNode.printName();
+            }
+            currentNode = currentNode.previous();
         }
     }
 }

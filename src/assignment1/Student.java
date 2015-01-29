@@ -13,7 +13,8 @@ package assignment1;
 public class Student {
     String name;
     String redId;
-    Double gpa;
+    double gpa;
+    double probationaryGpa;
     
     Student()
     {
@@ -46,15 +47,20 @@ public class Student {
         this.redId=redId;
     }
     
-    Double gpa()
+    double gpa()
     {
         return this.gpa;
     }
-    void gpa(Double gpa)
+    void gpa(double gpa)
     {
         this.gpa=gpa;
     }
 
+    public void probationaryGpa(double probationaryGpa)
+    {
+        this.probationaryGpa = probationaryGpa;
+    }
+    
     boolean isGreaterThan(Student aStudent) 
     {
         if(this.name.compareTo(aStudent.name()) > 0)
@@ -68,6 +74,24 @@ public class Student {
     }
 
     void print() {
+        System.out.println(name);
+    }
+
+    boolean onProbation() 
+    {
+        return gpa < probationaryGpa;
+    }
+
+    void printRedId() 
+    {
+        System.out.println(this.redId);
+    }
+
+    boolean isPerfectGpa() {
+        return gpa == 4.0;
+    }
+
+    void printName() {
         System.out.println(name);
     }
 }

@@ -94,18 +94,31 @@ public class Node {
 
     public boolean isGreaterThan(Node aNode) 
     {
-        if(this.student.isGreaterThan(aNode.student()))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return this.student.isGreaterThan(aNode.student());
     }
 
     public void print() 
     {
         this.student.print();
+    }
+
+    boolean onProbation() {
+        return student.onProbation();
+    }
+
+    void printRedId() {
+        student.printRedId();
+    }
+
+    public void probationaryGpa(double probationaryGpa) {
+        student.probationaryGpa(probationaryGpa);
+    }
+
+    public boolean isPerfectGpa() {
+        return student.isPerfectGpa();
+    }
+
+    void printName() {
+        student.printName();
     }
 }
