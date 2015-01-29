@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package assignment1;
 
 /**
  *
- * @author Christopher
+ * @author Christopher Jaramillo
  */
 public class Student {
     String name;
@@ -56,11 +50,21 @@ public class Student {
         this.gpa=gpa;
     }
 
+    /* 
+     *  Sets the gpa below which a student is considered on probation 
+     *  for later comparison.
+     */
     public void probationaryGpa(double probationaryGpa)
     {
         this.probationaryGpa = probationaryGpa;
     }
     
+    /*
+     * Compares student names and returns
+     * true if the name of this student is 
+     * greater than, or comes later in the alphabet, 
+     * that of the student passed as an argument.
+     */
     boolean isGreaterThan(Student aStudent) 
     {
         if(this.name.compareTo(aStudent.name()) > 0)
@@ -87,6 +91,11 @@ public class Student {
         System.out.println(this.redId);
     }
 
+    /*
+     * Compares gpa to 4.0, considered perfect GPA
+     * straight A's
+     */
+    
     boolean isPerfectGpa() {
         return gpa == 4.0;
     }
