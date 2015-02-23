@@ -8,7 +8,6 @@ public class DoubleLinkedList {
     Node front;
     Node back;
     int count;
-    double probationaryGpa = 2.85;
     
     DoubleLinkedList()
     {
@@ -18,7 +17,6 @@ public class DoubleLinkedList {
     }
     DoubleLinkedList(Node node)
     {
-        node.probationaryGpa(probationaryGpa);
         front=back=node;
         count++;
     }
@@ -47,16 +45,23 @@ public class DoubleLinkedList {
     public void add(Student student)
     {
         Node newStudent = new Node(student);
-        newStudent.probationaryGpa(probationaryGpa);
-        newStudent.add(front);
+        if(count == 0)
+        {
+            this.front = newStudent;
+            this.back = newStudent;
+        }
+        else
+        {
+            newStudent.add(front);
+        }
         
         if(newStudent.next() == front)
         {
-            front = newStudent;
+            this.front = newStudent;
         }
         else if(newStudent.next() == null)
         {
-            back = newStudent;
+            this.back = newStudent;
         }
         count++;
     }
