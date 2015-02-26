@@ -4,17 +4,16 @@ package assignment1;
  *
  * @author Christopher Jaramillo
  */
-public class Student {
+public class Student implements Comparable{
     String name;
     String redId;
     double gpa;
-    double probationaryGpa;
     
     Student()
     {
         name = new String();
         redId = new String();
-        gpa = new Double(0.0);
+        gpa = 0.0;
     }
     Student(String name, String redId, Double gpa)
     {
@@ -50,57 +49,9 @@ public class Student {
         this.gpa=gpa;
     }
 
-    /* 
-     *  Sets the gpa below which a student is considered on probation 
-     *  for later comparison.
-     */
-    public void probationaryGpa(double probationaryGpa)
-    {
-        this.probationaryGpa = probationaryGpa;
-    }
-    
-    /*
-     * Compares student names and returns
-     * true if the name of this student is 
-     * greater than, or comes later in the alphabet, 
-     * that of the student passed as an argument.
-     */
-    boolean isGreaterThan(Student aStudent) 
-    {
-        if(this.name.compareTo(aStudent.name()) > 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    void print() {
-        System.out.println(name);
-    }
-
-    boolean onProbation() 
-    {
-        return gpa < probationaryGpa;
-    }
-
-    void printRedId() 
-    {
-        System.out.println(this.redId);
-    }
-
-    /*
-     * Compares gpa to 4.0, considered perfect GPA
-     * straight A's
-     */
-    
-    boolean isPerfectGpa() {
-        return gpa == 4.0;
-    }
-
-    void printName() {
-        System.out.println(name);
+    @Override
+    public int compareTo(Object t) {
+        Student anotherStudent = (Student)t;
+        return this.name().compareTo(anotherStudent.name());
     }
 }

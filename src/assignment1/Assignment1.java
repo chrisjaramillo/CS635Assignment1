@@ -28,11 +28,7 @@ public class Assignment1 {
         list.add(student2);
         list.add(student1);
         list.add(student4);
-        list.print();
         Node test = list.getElement(2);
-        test.print();
-        list.printProbationList();
-        list.printPerfectGpaList();
     }
     
 }

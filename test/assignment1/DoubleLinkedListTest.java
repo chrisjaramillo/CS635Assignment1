@@ -107,10 +107,10 @@ public class DoubleLinkedListTest {
     public void testAddOneStudent() {
         System.out.println("add");
         Student student = new Student();
-        DoubleLinkedList instance = new DoubleLinkedList();
+        DoubleLinkedList<Student> instance = new DoubleLinkedList<>();
         instance.add(student);
-        assertEquals(instance.front().student(), student);
-        assertEquals(instance.back().student(), student);
+        assertEquals(instance.front().data(), student);
+        assertEquals(instance.back().data(), student);
     }
     
         /**
@@ -121,11 +121,11 @@ public class DoubleLinkedListTest {
         System.out.println("add");
         Student student = new Student("Abe", "888111", 3.45);
         Student student2 = new Student("Ben", "999222", 1.45);
-        DoubleLinkedList instance = new DoubleLinkedList();
+        DoubleLinkedList<Student> instance = new DoubleLinkedList<>();
         instance.add(student);
         instance.add(student2);
-        assertEquals(instance.front().student(), student);
-        assertEquals(instance.back().student(), student2);
+        assertEquals(instance.front().data(), student);
+        assertEquals(instance.back().data(), student2);
     }
     
     @Test
@@ -134,12 +134,12 @@ public class DoubleLinkedListTest {
         Student student = new Student("Abe", "888111", 3.45);
         Student student2 = new Student("Ben", "999222", 1.45);
         Student student3 = new Student("Chris", "777333", 2.45);
-        DoubleLinkedList instance = new DoubleLinkedList();
+        DoubleLinkedList<Student> instance = new DoubleLinkedList<>();
         instance.add(student);
         instance.add(student2);
         instance.add(student3);
-        assertEquals(instance.front().student(), student);
-        assertEquals(instance.back().student(), student3);
+        assertEquals(instance.front().data(), student);
+        assertEquals(instance.back().data(), student3);
     }
 
     /**
@@ -149,11 +149,11 @@ public class DoubleLinkedListTest {
     public void testGetElement() {
         System.out.println("getElement");
         int k = 0;
-        DoubleLinkedList instance = new DoubleLinkedList();
+        DoubleLinkedList<Student> instance = new DoubleLinkedList<>();
         Student expResult = new Student();
         instance.add(expResult);
         Node result = instance.getElement(k);
-        assertEquals(expResult, result.student());
+        assertEquals(expResult, result.data());
     }
     
     /**
@@ -163,13 +163,13 @@ public class DoubleLinkedListTest {
     public void testGetElement2() {
         System.out.println("getElement");
         int k = 0;
-        DoubleLinkedList instance = new DoubleLinkedList();
+        DoubleLinkedList<Student> instance = new DoubleLinkedList<>();
         Student expResult = new Student("Abe", "888111", 3.45);
         Student nonExpResult = new Student("Ben", "999222", 1.45);
         instance.add(expResult);
         instance.add(nonExpResult);
         Node result = instance.getElement(k);
-        assertEquals(expResult, result.student());
+        assertEquals(expResult, result.data());
     }
 
     /**
@@ -179,13 +179,13 @@ public class DoubleLinkedListTest {
     public void testGetElement3() {
         System.out.println("getElement");
         int k = 1;
-        DoubleLinkedList instance = new DoubleLinkedList();
+        DoubleLinkedList<Student> instance = new DoubleLinkedList<>();
         Student nonExpResult = new Student("Abe", "888111", 3.45);
         Student expResult = new Student("Ben", "999222", 1.45);
         instance.add(expResult);
         instance.add(nonExpResult);
         Node result = instance.getElement(k);
-        assertEquals(expResult, result.student());
+        assertEquals(expResult, result.data());
     }
 
     /**
@@ -195,7 +195,7 @@ public class DoubleLinkedListTest {
     public void testGetElement4() {
         System.out.println("getElement");
         int k = 0;
-        DoubleLinkedList instance = new DoubleLinkedList();
+        DoubleLinkedList<Student> instance = new DoubleLinkedList<>();
         Student student = new Student("Abe", "888111", 3.45);
         Student student2 = new Student("Ben", "999222", 1.45);
         Student student3 = new Student("Chris", "777333", 2.45);
@@ -203,13 +203,13 @@ public class DoubleLinkedListTest {
         instance.add(student2);
         instance.add(student3);
         Node result = instance.getElement(k);
-        assertEquals(student, result.student());
+        assertEquals(student, result.data());
         k++;
         result = instance.getElement(k);
-        assertEquals(student2, result.student());
+        assertEquals(student2, result.data());
         k++;
         result = instance.getElement(k);
-        assertEquals(student3, result.student());
+        assertEquals(student3, result.data());
     }
 
     /**
@@ -219,7 +219,7 @@ public class DoubleLinkedListTest {
     public void testGetElement5() {
         System.out.println("getElement");
         int k = 0;
-        DoubleLinkedList instance = new DoubleLinkedList();
+        DoubleLinkedList<Student> instance = new DoubleLinkedList<>();
         Student student = new Student("Abe", "888111", 3.45);
         Student student2 = new Student("Ben", "999222", 1.45);
         Student student3 = new Student("Chris", "777333", 2.45);
@@ -227,12 +227,12 @@ public class DoubleLinkedListTest {
         instance.add(student3);
         instance.add(student);
         Node result = instance.getElement(k);
-        assertEquals(student, result.student());
+        assertEquals(student, result.data());
         k++;
         result = instance.getElement(k);
-        assertEquals(student2, result.student());
+        assertEquals(student2, result.data());
         k++;
         result = instance.getElement(k);
-        assertEquals(student3, result.student());
+        assertEquals(student3, result.data());
     }   
 }

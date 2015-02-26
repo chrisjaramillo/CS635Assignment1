@@ -1,12 +1,19 @@
 package assignment1;
+/*
+Notes
+
+need to figure out add functionality. iterator and reverse iterator, find node 
+less than, insert? Node is not currently comparable, should it be? also, should 
+this implement deque? or just abstract list or list interface in general?
+*/
 
 /**
  *
  * @author Christopher Jaramillo
  */
-public class DoubleLinkedList<E> {
-    private Node<E> front;
-    private Node<E> back;
+public class DoubleLinkedList<T> {
+    private Node<T> front;
+    private Node<T> back;
     private int count;
     
     DoubleLinkedList()
@@ -15,41 +22,40 @@ public class DoubleLinkedList<E> {
         back = null;
         count = 0;
     }
-    DoubleLinkedList(Node node)
+    DoubleLinkedList(Node<T> node)
     {
         front=back=node;
         count++;
     }
     
-    Node front()
+    Node<T> front()
     {
         return this.front;
     }
-    void front(Node front)
+    void front(Node<T> front)
     {
         this.front = front;
     }
     
-    Node back()
+    Node<T> back()
     {
         return this.back;
     }
-    void back(Node back)
+    void back(Node<T> back)
     {
         this.back = back;
     }
     
     /*
-     * Adds students to the double linked list 
+     * Adds elements of type T to the double linked list 
      */
-    public void add(Object newObject)
+    public void add(T newObject)
     {
-        Node newNode = new Node(newObject);
-        
+        Node<T> newNode = new Node<>(newObject);
         count++;
     }
 
-    public Node getElement(int k)
+    public Node<T> getElement(int k)
     {
         Node requestedElement;
         if(k > count)
@@ -65,39 +71,5 @@ public class DoubleLinkedList<E> {
             }
         }
         return requestedElement;
-    }
-    
-    public void print() 
-    {
-        Node currentNode = front;
-        while(currentNode != null)
-        {
-            currentNode.print();
-            currentNode = currentNode.next();
-        }
-    }
-    public void printProbationList()
-    {
-        Node currentNode = front;
-        while(currentNode != null)
-        {
-            if(currentNode.onProbation())
-            {
-                currentNode.printRedId();
-            }
-            currentNode = currentNode.next();
-        }
-    }
-    public void printPerfectGpaList()
-    {
-        Node currentNode = back;
-        while(currentNode != null)
-        {
-            if(currentNode.isPerfectGpa())
-            {
-                currentNode.printName();
-            }
-            currentNode = currentNode.previous();
-        }
     }
 }
