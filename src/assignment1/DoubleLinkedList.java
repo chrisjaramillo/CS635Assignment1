@@ -4,10 +4,10 @@ package assignment1;
  *
  * @author Christopher Jaramillo
  */
-public class DoubleLinkedList {
-    Node front;
-    Node back;
-    int count;
+public class DoubleLinkedList<E> {
+    private Node<E> front;
+    private Node<E> back;
+    private int count;
     
     DoubleLinkedList()
     {
@@ -42,27 +42,10 @@ public class DoubleLinkedList {
     /*
      * Adds students to the double linked list 
      */
-    public void add(Student student)
+    public void add(Object newObject)
     {
-        Node newStudent = new Node(student);
-        if(count == 0)
-        {
-            this.front = newStudent;
-            this.back = newStudent;
-        }
-        else
-        {
-            newStudent.add(front);
-        }
+        Node newNode = new Node(newObject);
         
-        if(newStudent.next() == front)
-        {
-            this.front = newStudent;
-        }
-        else if(newStudent.next() == null)
-        {
-            this.back = newStudent;
-        }
         count++;
     }
 

@@ -4,33 +4,29 @@ package assignment1;
  *
  * @author Christopher Jaramillo
  */
-public class Node {
-    Student student;
-    Node previous;
-    Node next;
+
+import java.util.Comparator;
+
+public class Node<E> implements Comparable{
+    private E data;
+    Node<E> previous;
+    Node<E> next;
     
     Node()
     {
-        student = new Student();
         previous = null;
         next = null;
     }
-    Node(Student student)
+    Node(E data)
     {
-        this.student = student;
-        previous = null;
-        next = null;
-    }
-    Node(String name, String redId, Double gpa)
-    {
-        this.student = new Student(name,redId,gpa);
+        this.data = data;
         previous = null;
         next = null;
     }
     
-    public Student student()
+    public E data()
     {
-        return this.student;
+        return this.data;
     }
     
     public Node previous()
@@ -91,7 +87,7 @@ public class Node {
 
     public boolean isGreaterThan(Node aNode) 
     {
-        return this.student.isGreaterThan(aNode.student());
+        return this.data.isGreaterThan(aNode.data());
     }
 
     public void print() 
@@ -117,5 +113,15 @@ public class Node {
 
     void printName() {
         student.printName();
+    }
+
+    @Override
+    public int compareTo(Node compareNode) {
+        
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
