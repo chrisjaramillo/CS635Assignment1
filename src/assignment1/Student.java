@@ -54,4 +54,15 @@ public class Student implements Comparable{
         Student anotherStudent = (Student)t;
         return this.name().compareTo(anotherStudent.name());
     }
+    
+    @Override
+    public String toString(){
+        StringBuffer s = new StringBuffer();
+        s.append(name);
+        s.append('|');
+        s.append(redId);
+        s.append('|');
+        s.append(gpa);
+        return s.toString();
+    }
 }

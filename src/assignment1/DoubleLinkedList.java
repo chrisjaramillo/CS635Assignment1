@@ -12,6 +12,7 @@ this implement deque? or just abstract list or list interface in general?
  * @author Christopher Jaramillo
  */
 
+import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Deque;
         
@@ -27,29 +28,6 @@ public class DoubleLinkedList<T> implements Deque<T>{
         back = null;
         count = 0;
     }
-    DoubleLinkedList(Node<T> node)
-    {
-        front=back=node;
-        count++;
-    }
-    
-    Node<T> front()
-    {
-        return this.front;
-    }
-    void front(Node<T> front)
-    {
-        this.front = front;
-    }
-    
-    Node<T> back()
-    {
-        return this.back;
-    }
-    void back(Node<T> back)
-    {
-        this.back = back;
-    }
     
     /*
      * Adds elements of type T to the double linked list 
@@ -58,11 +36,43 @@ public class DoubleLinkedList<T> implements Deque<T>{
     public boolean add(T newObject)
     {
         Node<T> newNode = new Node<>(newObject);
+        System.out.println("Incoming " + newNode);
+        if(count == 0)
+        {
+            front = back = newNode;
+        }
+        else
+        {
+            
+            if(newNode.compareTo(front) < 0)
+            {
+                newNode.add(front);
+                front = newNode;
+            }
+            else
+            {
+                Node testNode = front;
+                while(testNode != null && newNode.compareTo(testNode) >= 0)
+                {
+                    testNode = testNode.next();
+                }
+                if(testNode == null)
+                {
+                    back.add(newNode);
+                    back = newNode;
+                }
+                else
+                {
+                    newNode.add(testNode);
+                }
+            }
+        }
         count++;
+        System.out.println(this);
         return true;
     }
 
-    public Node<T> getElement(int k)
+    public T getElement(int k)
     {
         Node requestedElement;
         if(k > count)
@@ -77,7 +87,7 @@ public class DoubleLinkedList<T> implements Deque<T>{
                 requestedElement = requestedElement.next();
             }
         }
-        return requestedElement;
+        return (T) requestedElement.data();
     }
 
     @Override
@@ -122,22 +132,46 @@ public class DoubleLinkedList<T> implements Deque<T>{
 
     @Override
     public T getFirst() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        T value = null;
+        if(front != null)
+        {
+            value = front.data();
+            front = front.next();
+            count--;
+        }
+        return value;
     }
 
     @Override
     public T getLast() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        T value = null;
+        if(back != null)
+        {
+            value = back.data();
+            back = back.previous();
+            count--;
+        }
+        return value;
     }
 
     @Override
     public T peekFirst() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        T value = null;
+        if(front != null)
+        {
+            value = front.data();
+        }
+        return value;
     }
 
     @Override
     public T peekLast() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        T value = null;
+        if(back != null)
+        {
+            value = back.data();
+        }
+        return value;
     }
 
     @Override
@@ -217,14 +251,48 @@ public class DoubleLinkedList<T> implements Deque<T>{
 
     @Override
     public Object[] toArray() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Object[] anArray = new Object[count];
+        int i=0;
+        Node currentNode = front;
+        while(currentNode != null)
+        {
+            anArray[i] = currentNode.data();
+            i++;
+            currentNode = currentNode.next();
+        }
+        return anArray;
     }
 
     @Override
     public <T> T[] toArray(T[] ts) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Class<T> s = null;
+        ts = (T[])Array.newInstance(s, count);
+        int i=0;
+        Node currentNode = front;
+        while(currentNode != null)
+        {
+            ts[i] = (T)currentNode.data();
+            i++;
+            currentNode = currentNode.next();
+        }
+        return ts;
     }
 
+    @Override
+    public String toString() {
+        StringBuffer s = new StringBuffer();
+        Node aNode = front;
+        while(aNode != null)
+        {
+            String temp = aNode.toString();
+            s.append(temp);
+            s.append( ", ");
+            aNode = aNode.next();
+        }
+        s.delete(s.length()-2, s.length()-1);
+        return s.toString();
+    }
+    
     @Override
     public boolean containsAll(Collection<?> clctn) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

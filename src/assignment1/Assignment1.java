@@ -17,7 +17,9 @@ public class Assignment1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        DoubleLinkedList list = new DoubleLinkedList();
+        String test = "Don";
+        System.out.println(test.compareTo("Chris"));
+        DoubleLinkedList<Student> list = new DoubleLinkedList<>();
         Student student = new Student("Albert", "9302832", 3.5);
         Student student1 = new Student("Ben", "8383", 2.5);
         Student student2 = new Student("Chris", "09302", 1.5);
@@ -28,7 +30,7 @@ public class Assignment1 {
         list.add(student2);
         list.add(student1);
         list.add(student4);
-        Node test = list.getElement(2);
+        System.out.println(list);
     }
     
 }
